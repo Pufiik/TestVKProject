@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TestVKProject</string>
+    <string name="welcome">Добро пожаловать в систему!</string>
+    <string name="program_continue">Продолжить</string>
+    <string name="more">Подробнее</string>
+    <string name="retry">Повторить</string>
+    <string name="load_more">Загрузить еще</string>
+</resources>
