@@ -2,7 +2,6 @@ package ru.pugovishnikova.example.testvkproject.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import ru.pugovishnikova.example.testvkproject.R
 import ru.pugovishnikova.example.testvkproject.databinding.ActivityItemProductBinding
 import ru.pugovishnikova.example.testvkproject.fragments.ItemProductFragment
 
