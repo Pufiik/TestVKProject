@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -15,24 +14,24 @@
                 android:id="@+id/products_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/item_default_margin"
                 app:layout_constraintBottom_toTopOf="@id/btnNext"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnNext"
-                android:layout_width="300dp"
-                android:layout_height="60dp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_more_height"
                 android:background="@drawable/button_rounded_welcome"
-                android:padding="10dp"
+                android:padding="@dimen/item_default_margin"
                 android:text="@string/load_more"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/blue"
-                android:textSize="20sp"
+                android:textSize="@dimen/button_more_text_size"
                 android:textStyle="bold"
                 android:visibility="gone"
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/button_text_size"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />

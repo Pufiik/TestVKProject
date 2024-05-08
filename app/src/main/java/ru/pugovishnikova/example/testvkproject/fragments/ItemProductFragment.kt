@@ -69,13 +69,27 @@ class ItemProductFragment: Fragment() {
                 showFields(true)
                 showLoader(false)
                 showButton(false)
-                binding.title.text = state.data.title
-                binding.description.text = state.data.description
-                binding.price.text = state.data.price.toString()
-                binding.brand.text = state.data.brand
-                binding.stock.text = state.data.stock.toString()
-                binding.rating.text = state.data.rating.toString()
-                binding.category.text = state.data.category
+                "$TITLE${state.data.title}".apply {
+                    binding.title.text = this
+                }
+                "$DESCRIPTION${state.data.description}".apply {
+                    binding.description.text = this
+                }
+                "$BRAND${state.data.brand}".apply {
+                    binding.brand.text = this
+                }
+                "$PRICE${state.data.price}".apply {
+                    binding.price.text = this
+                }
+                "$STOCK${state.data.stock}".apply {
+                    binding.stock.text = this
+                }
+                "$RATING${state.data.rating}".apply {
+                    binding.rating.text = this
+                }
+                "$CATEGORY${state.data.category}".apply {
+                    binding.category.text = this
+                }
                 binding.image.apply {
                     Glide.with(this)
                         .load(state.data.thumbnail)
@@ -111,5 +125,12 @@ class ItemProductFragment: Fragment() {
             itemProductFragment.arguments = args
             return itemProductFragment
         }
-    }
+        const val TITLE = "Название: "
+        const val DESCRIPTION = "Описание: "
+        const val PRICE = "Цена: "
+        const val BRAND = "Брэнд: "
+        const val STOCK = "Количество: "
+        const val CATEGORY = "Категория: "
+        const val RATING = "Рэйтинг: "
+        }
 }

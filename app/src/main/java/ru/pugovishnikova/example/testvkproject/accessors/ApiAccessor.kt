@@ -12,6 +12,10 @@ interface ApiAccessor {
     @GET("/products/{id}")
     suspend fun getProductByID(@Path(value = "id") id: Int): Response<Product>
 
+    @GET("/products/search")
+    suspend fun search(@Query("q") q: String): Response<ProductResponse>
+
+
     @GET("/products")
     suspend fun getLimitProducts(@Query("skip") skip: Int, @Query("limit") limit: Int): Response<ProductResponse>
 }
