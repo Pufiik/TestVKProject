@@ -8,11 +8,11 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="0dp"
+        android:layout_margin="@dimen/button_margin"
+        app:cardCornerRadius="@dimen/corner_radius"
+        app:cardElevation="@dimen/zero"
         app:strokeColor="@color/blue"
-        app:strokeWidth="1dp">
+        app:strokeWidth="@dimen/stroke_search">
 
         <SearchView
             android:id="@+id/search_input"
@@ -23,15 +23,15 @@
             android:maxLines="1"
             android:queryHint="@string/search"
             android:showAsAction="ifRoom|collapseActionView"
-            android:textSize="29sp" />
+            android:textSize="@dimen/search_text" />
 
     </com.google.android.material.card.MaterialCardView>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_height="@dimen/stroke_search"
+        android:layout_marginLeft="@dimen/button_margin"
+        android:layout_marginRight="@dimen/button_margin"
         android:background="@color/blue" />
 
     <TextView
@@ -39,17 +39,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/nothing_found"
-        android:layout_margin="20dp"
+        android:layout_margin="@dimen/button_margin"
         android:textColor="@color/blue"
         android:gravity="center"
         android:visibility="gone"
-        android:textSize="19sp" />
+        android:textSize="@dimen/text_size_product_item" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/search_rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="@dimen/item_default_margin"
         android:layout_gravity="center" />
 
     <FrameLayout
@@ -61,8 +61,8 @@
         android:visibility="gone">
 
         <ProgressBar
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/button_back_height"
+            android:layout_height="@dimen/button_back_height"
             android:layout_gravity="center_vertical|center_horizontal" />
     </FrameLayout>
 

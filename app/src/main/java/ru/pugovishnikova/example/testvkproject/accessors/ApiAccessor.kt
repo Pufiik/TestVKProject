@@ -16,6 +16,7 @@ interface ApiAccessor {
     suspend fun search(@Query("q") q: String): Response<ProductResponse>
 
 
+
     @GET("/products")
     suspend fun getLimitProducts(@Query("skip") skip: Int, @Query("limit") limit: Int): Response<ProductResponse>
 }
