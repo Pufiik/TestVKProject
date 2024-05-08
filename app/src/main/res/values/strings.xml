@@ -5,4 +5,5 @@
     <string name="more">Подробнее</string>
     <string name="retry">Повторить</string>
     <string name="load_more">Загрузить еще</string>
+    <string name="back">Назад</string>
 </resources>

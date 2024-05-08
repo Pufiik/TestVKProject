@@ -95,6 +95,9 @@ class ItemProductFragment: Fragment() {
                         .load(state.data.thumbnail)
                         .into(this)
                 }
+                binding.back.setOnClickListener {
+                    activity?.finish()
+                }
             }
         }
     }
@@ -112,6 +115,7 @@ class ItemProductFragment: Fragment() {
         binding.rating.isVisible = isShow
         binding.category.isVisible = isShow
         binding.image.isVisible = isShow
+        binding.back.isVisible = isShow
     }
 
     private fun showButton(isShow: Boolean) {
