@@ -25,6 +25,7 @@
         </activity>
         <activity android:name=".activities.ProductActivity"/>
         <activity android:name=".activities.ItemProductActivity"/>
+        <activity android:name=".activities.SearchActivity"/>
     </application>
 
 </manifest>

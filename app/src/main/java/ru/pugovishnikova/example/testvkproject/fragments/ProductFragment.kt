@@ -1,5 +1,6 @@
 package ru.pugovishnikova.example.testvkproject.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import ru.pugovishnikova.example.testvkproject.activities.SearchActivity
 import ru.pugovishnikova.example.testvkproject.adapters.ProductAdapter
 import ru.pugovishnikova.example.testvkproject.models.Product
 import ru.pugovishnikova.example.testvkproject.utilites.State
@@ -49,10 +51,12 @@ class ProductFragment: Fragment() {
                 showLoader(true)
                 showButton(false)
                 showRV(false)
+                showSerch(false)
                 showMore(false)
             }
 
             is State.Fail -> {
+                showSerch(false)
                 showLoader(false)
                 showRV(false)
                 showButton(true)
@@ -68,6 +72,7 @@ class ProductFragment: Fragment() {
             }
 
             is State.Success -> {
+                showSerch(true)
                 showLoader(false)
                 showRV(true)
                 showButton(false)
@@ -79,6 +84,10 @@ class ProductFragment: Fragment() {
                 binding.btnNext.setOnClickListener {
                     viewModel.getData()
                 }
+                binding.search.setOnClickListener {
+                    val intent = Intent(activity, SearchActivity::class.java)
+                    startActivity(intent)
+                }
             }
         }
     }
@@ -89,6 +98,9 @@ class ProductFragment: Fragment() {
 
     private fun showRV(isShow: Boolean) {
         binding.productsRv.isVisible = isShow
+    }
+    private fun showSerch(isShow: Boolean) {
+        binding.search.isVisible = isShow
     }
 
     private fun showMore(isShow: Boolean){

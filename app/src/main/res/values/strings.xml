@@ -6,4 +6,6 @@
     <string name="retry">Повторить</string>
     <string name="load_more">Загрузить еще</string>
     <string name="back">Назад</string>
+    <string name="search">Поиск</string>
+    <string name="nothing_found">Ничего не найдено</string>
 </resources>
