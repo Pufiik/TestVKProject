@@ -51,12 +51,14 @@ class SearchActivity: AppCompatActivity() {
                 showRV(false)
                 showLoader(true)
                 showNF(false)
+                showAttributes(false)
             }
 
             is State.Fail -> {
                 showLoader(false)
                 showRV(false)
                 showNF(true)
+                showAttributes(true)
                 Toast.makeText(
                     this,
                     state.exception.message,
@@ -66,6 +68,7 @@ class SearchActivity: AppCompatActivity() {
 
             is State.Success -> {
                 showLoader(false)
+                showAttributes(true)
                 showNF(state.data.isEmpty())
                 showRV(state.data.isNotEmpty())
                 showNF(state.data.isEmpty())
@@ -83,5 +86,11 @@ class SearchActivity: AppCompatActivity() {
     }
     private fun showLoader(isShow: Boolean) {
         binding.searchProgressbar.isVisible = isShow
+    }
+
+    private fun showAttributes(isShow: Boolean) {
+        binding.back.isVisible = isShow
+        binding.searchInput.isVisible = isShow
+        binding.straight.isVisible = isShow
     }
 }

@@ -41,6 +41,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <View
+        android:id="@+id/straight"
         android:layout_width="match_parent"
         android:layout_height="@dimen/stroke_search"
         android:layout_marginLeft="@dimen/button_margin"

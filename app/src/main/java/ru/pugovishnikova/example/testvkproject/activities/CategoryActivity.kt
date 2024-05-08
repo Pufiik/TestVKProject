@@ -1,9 +1,7 @@
 package ru.pugovishnikova.example.testvkproject.activities
 
-import android.R
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -14,22 +12,23 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import ru.pugovishnikova.example.testvkproject.adapters.ProductAdapter
 import ru.pugovishnikova.example.testvkproject.databinding.ActivityCategoryBinding
-import ru.pugovishnikova.example.testvkproject.databinding.ActivitySearchBinding
 import ru.pugovishnikova.example.testvkproject.models.Product
 import ru.pugovishnikova.example.testvkproject.providers.CategoryProvider
 import ru.pugovishnikova.example.testvkproject.utilites.State
 import ru.pugovishnikova.example.testvkproject.viewmodels.CategoryViewModel
-import ru.pugovishnikova.example.testvkproject.viewmodels.SearchViewModel
 
-class CategoryActivity: AppCompatActivity() {
+class CategoryActivity : AppCompatActivity() {
     private val viewModel by viewModels<CategoryViewModel>()
     private lateinit var binding: ActivityCategoryBinding
-    private lateinit var spinner: Spinner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCategoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.back.setOnClickListener {
+            this.finish()
+        }
 
         viewModel.requireState().onEach(::handleState)
             .launchIn(this.lifecycleScope)
@@ -49,12 +48,15 @@ class CategoryActivity: AppCompatActivity() {
         when (state) {
             is State.Idle -> Unit
             is State.Loading -> {
-                binding.productList.isVisible = false
-//                showLoader(true)
+                showAttributes(false)
+                showRV(false)
+                showLoader(true)
             }
 
             is State.Fail -> {
-//                showLoader(false)
+                showLoader(false)
+                showRV(false)
+                showAttributes(true)
                 Toast.makeText(
                     this,
                     state.exception.message,
@@ -63,15 +65,29 @@ class CategoryActivity: AppCompatActivity() {
             }
 
             is State.Success -> {
-//                showLoader(false)
-//                nothingFounded.isVisible = state.data.isEmpty()
-                binding.productList.isVisible = state.data.isNotEmpty()
-                val products = binding.productList
+                showLoader(false)
+                showAttributes(true)
+                showRV(true)
+                val products = binding.categoryRv
                 products.adapter = ProductAdapter(state.data)
                 products.layoutManager = LinearLayoutManager(this)
             }
         }
     }
 
+    private fun showRV(isShow: Boolean) {
+        binding.categoryRv.isVisible = isShow
+    }
+
+    private fun showLoader(isShow: Boolean) {
+        binding.searchProgressbar.isVisible = isShow
+    }
+
+    private fun showAttributes(isShow: Boolean){
+        binding.back.isVisible = isShow
+        binding.category.isVisible = isShow
+        binding.spinner.isVisible = isShow
+        binding.search.isVisible = isShow
+    }
 
 }

@@ -34,4 +34,5 @@
     <dimen name="item_margin">3dp</dimen>
     <dimen name="back_width">100dp</dimen>
     <dimen name="back_height">40dp</dimen>
+    <dimen name="search_width">150dp</dimen>
 </resources>
