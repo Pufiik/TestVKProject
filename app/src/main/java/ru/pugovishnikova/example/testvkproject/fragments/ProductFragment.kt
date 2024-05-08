@@ -15,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import ru.pugovishnikova.example.testvkproject.activities.CategoryActivity
 import ru.pugovishnikova.example.testvkproject.activities.SearchActivity
 import ru.pugovishnikova.example.testvkproject.adapters.ProductAdapter
 import ru.pugovishnikova.example.testvkproject.models.Product
@@ -53,6 +54,7 @@ class ProductFragment: Fragment() {
                 showRV(false)
                 showSerch(false)
                 showMore(false)
+                showCategory(false)
             }
 
             is State.Fail -> {
@@ -61,6 +63,7 @@ class ProductFragment: Fragment() {
                 showRV(false)
                 showButton(true)
                 showMore(false)
+                showCategory(false)
                 binding.retry.setOnClickListener {
                     viewModel.getData()
                 }
@@ -77,6 +80,7 @@ class ProductFragment: Fragment() {
                 showRV(true)
                 showButton(false)
                 showMore(true)
+                showCategory(true)
                 val adapter = ProductAdapter(state.data)
                 val rv = binding.productsRv
                 rv.adapter = adapter
@@ -88,6 +92,12 @@ class ProductFragment: Fragment() {
                     val intent = Intent(activity, SearchActivity::class.java)
                     startActivity(intent)
                 }
+                binding.category.setOnClickListener {
+                    val intent = Intent(activity, CategoryActivity::class.java)
+                    startActivity(intent)
+                }
+
+
             }
         }
     }
@@ -98,6 +108,9 @@ class ProductFragment: Fragment() {
 
     private fun showRV(isShow: Boolean) {
         binding.productsRv.isVisible = isShow
+    }
+    private fun showCategory(isShow: Boolean) {
+        binding.category.isVisible = isShow
     }
     private fun showSerch(isShow: Boolean) {
         binding.search.isVisible = isShow

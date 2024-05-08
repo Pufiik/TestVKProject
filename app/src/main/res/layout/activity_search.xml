@@ -4,7 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/back"
+        android:layout_width="@dimen/back_width"
+        android:layout_height="@dimen/back_height"
+        android:background="@drawable/button_rounded_welcome"
+        android:padding="@dimen/item_default_margin"
+        android:text="@string/back"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/item_text_size"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/button_margin"
+        android:layout_marginStart="@dimen/button_margin" />
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

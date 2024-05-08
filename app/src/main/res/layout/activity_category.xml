@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/back"
+        android:layout_width="@dimen/back_width"
+        android:layout_height="@dimen/back_height"
+        android:background="@drawable/button_rounded_welcome"
+        android:padding="@dimen/item_default_margin"
+        android:text="@string/back"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/item_text_size"
+        android:textStyle="bold"
+        android:layout_margin="@dimen/button_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/button_margin"
+        android:text="@string/choose_category"
+        android:textSize="@dimen/item_title_text_size"
+        app:layout_constraintTop_toBottomOf="@id/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/button_margin"
+        app:layout_constraintTop_toBottomOf="@+id/category"
+        app:layout_constraintStart_toStartOf="@id/category"
+        />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_more_height"
+        android:background="@drawable/button_rounded_welcome"
+        android:padding="@dimen/item_default_margin"
+        android:text="@string/search"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/button_more_text_size"
+        android:textStyle="bold"
+        android:layout_margin="@dimen/button_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinner"
+        app:layout_constraintEnd_toEndOf="parent" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/productList"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zero"
+        android:layout_margin="@dimen/button_margin"
+        app:layout_constraintTop_toBottomOf="@id/search"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+        />
+
+    <FrameLayout
+        android:id="@+id/search_progressbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@null"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="@dimen/button_back_height"
+            android:layout_height="@dimen/button_back_height"
+            android:layout_gravity="center_vertical|center_horizontal" />
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

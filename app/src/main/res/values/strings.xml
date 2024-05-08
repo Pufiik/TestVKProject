@@ -8,4 +8,6 @@
     <string name="back">Назад</string>
     <string name="search">Поиск</string>
     <string name="nothing_found">Ничего не найдено</string>
+    <string name="category">Категории</string>
+    <string name="choose_category">Выберите категорию</string>
 </resources>

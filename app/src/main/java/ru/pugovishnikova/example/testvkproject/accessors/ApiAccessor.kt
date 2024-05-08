@@ -15,7 +15,11 @@ interface ApiAccessor {
     @GET("/products/search")
     suspend fun search(@Query("q") q: String): Response<ProductResponse>
 
-
+    @GET("/products/category/{cat}")
+    suspend fun getProductsByCategory(@Path(value = "cat") category: String)
+            : Response<ProductResponse>
+    @GET("/products/categories")
+    suspend fun getAllCategories(): Response<List<String>>
 
     @GET("/products")
     suspend fun getLimitProducts(@Query("skip") skip: Int, @Query("limit") limit: Int): Response<ProductResponse>

@@ -8,30 +8,26 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import ru.pugovishnikova.example.testvkproject.managers.ProductManager
+import ru.pugovishnikova.example.testvkproject.managers.CategoryManager
+import ru.pugovishnikova.example.testvkproject.managers.SearchManager
 import ru.pugovishnikova.example.testvkproject.models.Product
 import ru.pugovishnikova.example.testvkproject.providers.CategoryProvider
 import ru.pugovishnikova.example.testvkproject.utilites.State
 
-class ProductViewModel:  ViewModel() {
+class CategoryViewModel: ViewModel(){
 
     private val state = MutableStateFlow<State<List<Product>>>(State.Idle())
-    private val limit: Int = 5
-    private var skip: Int = 0
-    private val listProduct: MutableList<Product> = mutableListOf()
+
     fun requireState() = state.asStateFlow()
 
-    fun getData() {
+    fun getData(name: String) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 state.value = State.Loading()
                 delay(2000L)
                 try {
-                    CategoryProvider.getCategories()
-                    val result = ProductManager.getData(skip, limit)
-                    listProduct.addAll(result.data)
-                    state.value = State.Success(listProduct)
-                    skip += limit
+                    val result = CategoryManager.getProductsByCategories(name)
+                    state.value = State.Success(result.data)
                 } catch (e: Exception) {
                     state.value = State.Fail(e)
                 }

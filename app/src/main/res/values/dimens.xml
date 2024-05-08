@@ -32,4 +32,6 @@
     <dimen name="item_image">100dp</dimen>
     <dimen name="button_margin">20dp</dimen>
     <dimen name="item_margin">3dp</dimen>
+    <dimen name="back_width">100dp</dimen>
+    <dimen name="back_height">40dp</dimen>
 </resources>

@@ -22,28 +22,25 @@ class SearchActivity: AppCompatActivity() {
     private val viewModel by viewModels<SearchViewModel>()
     private lateinit var productList: RecyclerView
     private lateinit var binding: ActivitySearchBinding
-    private lateinit var search: SearchView
-    private lateinit var searchInput: String
-    private lateinit var nothingFounded: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding =ActivitySearchBinding.inflate(layoutInflater)
+        binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.back.setOnClickListener {
+            this.finish()
+        }
 
-        productList = binding.searchRv
-        nothingFounded = binding.searchNothingFoundedTv
-        search = binding.searchInput
 
         viewModel.requireState().onEach(::handleState)
             .launchIn(this.lifecycleScope)
-        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.searchInput.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(p0: String?): Boolean {
                 return false
             }
 
             override fun onQueryTextSubmit(p0: String?): Boolean {
-                searchInput = search.query.toString()
+                val searchInput = binding.searchInput.query.toString()
                 viewModel.getData(searchInput)
                 return false
             }
@@ -54,12 +51,18 @@ class SearchActivity: AppCompatActivity() {
         when (state) {
             is State.Idle -> Unit
             is State.Loading -> {
-                productList.isVisible = false
+                showRV(false)
                 showLoader(true)
+                showBackButton(true)
+                showNF(false)
             }
 
             is State.Fail -> {
+                showBackButton(true)
                 showLoader(false)
+                showRV(false)
+                showBackButton(false)
+                showNF(false)
                 Toast.makeText(
                     this,
                     state.exception.message,
@@ -69,13 +72,24 @@ class SearchActivity: AppCompatActivity() {
 
             is State.Success -> {
                 showLoader(false)
-                nothingFounded.isVisible = state.data.isEmpty()
-                productList.isVisible = state.data.isNotEmpty()
-                val articles = binding.searchRv
-                articles.adapter = ProductAdapter(state.data)
-                articles.layoutManager = LinearLayoutManager(this)
+                showNF(state.data.isEmpty())
+                showRV(state.data.isNotEmpty())
+                showNF(!state.data.isNotEmpty())
+                showBackButton(true)
+                binding.searchRv.adapter = ProductAdapter(state.data)
+                binding.searchRv.layoutManager = LinearLayoutManager(this)
             }
         }
+    }
+
+    private fun showNF(isShow: Boolean){
+        binding.searchNothingFoundedTv.isVisible = isShow
+    }
+    private fun showRV(isShow: Boolean) {
+        binding.searchRv.isVisible = isShow
+    }
+    private fun showBackButton(isShow: Boolean) {
+        binding.back.isVisible = isShow
     }
     private fun showLoader(isShow: Boolean) {
         binding.searchProgressbar.isVisible = isShow
