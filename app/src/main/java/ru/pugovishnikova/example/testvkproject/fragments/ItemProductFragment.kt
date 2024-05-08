@@ -35,6 +35,9 @@ class ItemProductFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.back.setOnClickListener {
+            activity?.finish()
+        }
         viewModel.requireState().onEach(::handleState).launchIn(viewLifecycleOwner.lifecycleScope)
         if (savedInstanceState == null) {
             viewModel.getData(arguments?.getInt(ItemProductActivity.ID)!!)
@@ -49,12 +52,14 @@ class ItemProductFragment: Fragment() {
                 showLoader(true)
                 showFields(false)
                 showButton(false)
+                showButtonBack(false)
             }
 
             is State.Fail -> {
                 showFields(false)
                 showLoader(false)
                 showButton(true)
+                showButtonBack(true)
                 binding.retry.setOnClickListener {
                     viewModel.getData(arguments?.getInt(ItemProductActivity.ID)!!)
                 }
@@ -69,6 +74,7 @@ class ItemProductFragment: Fragment() {
                 showFields(true)
                 showLoader(false)
                 showButton(false)
+                showButtonBack(true)
                 "$TITLE${state.data.title}".apply {
                     binding.title.text = this
                 }
@@ -95,9 +101,6 @@ class ItemProductFragment: Fragment() {
                         .load(state.data.thumbnail)
                         .into(this)
                 }
-                binding.back.setOnClickListener {
-                    activity?.finish()
-                }
             }
         }
     }
@@ -115,6 +118,9 @@ class ItemProductFragment: Fragment() {
         binding.rating.isVisible = isShow
         binding.category.isVisible = isShow
         binding.image.isVisible = isShow
+    }
+
+    private fun showButtonBack(isShow: Boolean){
         binding.back.isVisible = isShow
     }
 
