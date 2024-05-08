@@ -9,9 +9,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.pugovishnikova.example.testvkproject.managers.CategoryManager
-import ru.pugovishnikova.example.testvkproject.managers.SearchManager
 import ru.pugovishnikova.example.testvkproject.models.Product
-import ru.pugovishnikova.example.testvkproject.providers.CategoryProvider
 import ru.pugovishnikova.example.testvkproject.utilites.State
 
 class CategoryViewModel: ViewModel(){
